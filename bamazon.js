@@ -83,32 +83,32 @@ function purchaseFromDatabase(IDpurchased,quantityPurchased) {
             console.log("Bamazon has exactly what you need. Your total is " + totalCost);
             
             //update the database for the sale
-            connection.query('UPDATE products set stock_quantity = stock_quantity -' + quantityPurchased + 'WHERE unique_id = ' + IDpurchased);
+            connection.query('UPDATE products SET stock_quantity = stock_quantity -' + quantityPurchased + 'WHERE unique_id=' + IDpurchased);
         }
         else {
             console.log("Sorry, we don't have enough of that item is stock to fulfill your order!");
         }
-        displayALL();
     });
 }
 
-function displayALL() {
-    connection.query("SELECT * FROM products", function(err, response){
-        if (err) {
-            throw err;
-        }
-        var productTable = new table({
-            head: ['Unique ID','Product Name','Dept. Name','Price $', 'Quantity'],
-            colWidths: [15,50,20,10,15]
-        });
-        for (i = 0; i < response.length; i++) {
-            productTable.push(
-                [response[i].unique_id, response[i].product_name, response[i].department_name, response[i].price,response[i].stock_quantity]
-            );
-        }
-        console.log(productTable.toString());
-});
-}
+//I couldn't get my updated table to show up
+// function displayALL() {
+//     connection.query("SELECT * FROM products", function(err, response){
+//         if (err) {
+//             throw err;
+//         }
+//         var productTable = new table({
+//             head: ['Unique ID','Product Name','Dept. Name','Price $', 'Quantity'],
+//             colWidths: [15,50,20,10,15]
+//         });
+//         for (i = 0; i < response.length; i++) {
+//             productTable.push(
+//                 [response[i].unique_id, response[i].product_name, response[i].department_name, response[i].price,response[i].stock_quantity]
+//             );
+//         }
+//         console.log(productTable.toString());
+// });
+// }
 
 
 // Naughty Boi Productions 
